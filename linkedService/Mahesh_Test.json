@@ -1,0 +1,18 @@
+{
+	"name": "Mahesh_Test",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "CENTAURI\\SQL2019",
+			"database": "Mahesh_test",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"hostNameInCertificate": "",
+			"authenticationType": "SQL",
+			"userName": "sa",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQERGRTQzRURGLUIwQjUtNDlERS1BQjg3LUEwOTFBN0UwMzY1MF85ZTlhMGQ0NC02MmNlLTQzMTItODRhOS04NjViMDBmZDJmMDgiDQp9"
+		}
+	}
+}

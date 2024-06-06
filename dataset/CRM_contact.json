@@ -1,0 +1,1291 @@
+{
+	"name": "CRM_contact",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "contactid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "accountid",
+				"type": "varchar"
+			},
+			{
+				"name": "accountidname",
+				"type": "varchar"
+			},
+			{
+				"name": "accountidyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "accountrolecode",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_addressid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "address1_addresstypecode",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_city",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_composite",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_country",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_county",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_fax",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_freighttermscode",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_latitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "address1_line1",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_line2",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_line3",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_longitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "address1_name",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_postalcode",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_postofficebox",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_primarycontactname",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_shippingmethodcode",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_stateorprovince",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_telephone1",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_telephone2",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_telephone3",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_upszone",
+				"type": "varchar"
+			},
+			{
+				"name": "address1_utcoffset",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "address2_addressid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "address2_addresstypecode",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_city",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_composite",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_country",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_county",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_fax",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_freighttermscode",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_latitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "address2_line1",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_line2",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_line3",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_longitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "address2_name",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_postalcode",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_postofficebox",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_primarycontactname",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_shippingmethodcode",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_stateorprovince",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_telephone1",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_telephone2",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_telephone3",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_upszone",
+				"type": "varchar"
+			},
+			{
+				"name": "address2_utcoffset",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "address3_addressid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "address3_addresstypecode",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_city",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_composite",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_country",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_county",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_fax",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_freighttermscode",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_latitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "address3_line1",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_line2",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_line3",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_longitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "address3_name",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_postalcode",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_postofficebox",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_primarycontactname",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_shippingmethodcode",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_stateorprovince",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_telephone1",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_telephone2",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_telephone3",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_upszone",
+				"type": "varchar"
+			},
+			{
+				"name": "address3_utcoffset",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "adx_confirmremovepassword",
+				"type": "bit"
+			},
+			{
+				"name": "adx_createdbyipaddress",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_createdbyusername",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_identity_accessfailedcount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "adx_identity_emailaddress1confirmed",
+				"type": "bit"
+			},
+			{
+				"name": "adx_identity_lastsuccessfullogin",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "adx_identity_locallogindisabled",
+				"type": "bit"
+			},
+			{
+				"name": "adx_identity_lockoutenabled",
+				"type": "bit"
+			},
+			{
+				"name": "adx_identity_lockoutenddate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "adx_identity_logonenabled",
+				"type": "bit"
+			},
+			{
+				"name": "adx_identity_mobilephoneconfirmed",
+				"type": "bit"
+			},
+			{
+				"name": "adx_identity_newpassword",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_identity_passwordhash",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_identity_securitystamp",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_identity_twofactorenabled",
+				"type": "bit"
+			},
+			{
+				"name": "adx_identity_username",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_modifiedbyipaddress",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_modifiedbyusername",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_organizationname",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_preferredlanguageid",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_preferredlanguageidname",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_profilealert",
+				"type": "bit"
+			},
+			{
+				"name": "adx_profilealertdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "adx_profilealertinstructions",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_profileisanonymous",
+				"type": "bit"
+			},
+			{
+				"name": "adx_profilelastactivity",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "adx_profilemodifiedon",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "adx_publicprofilecopy",
+				"type": "varchar"
+			},
+			{
+				"name": "adx_timezone",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "aging30",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "aging30_base",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "aging60",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "aging60_base",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "aging90",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "aging90_base",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "anniversary",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "annualincome",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "annualincome_base",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "assistantname",
+				"type": "varchar"
+			},
+			{
+				"name": "assistantphone",
+				"type": "varchar"
+			},
+			{
+				"name": "birthdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "business2",
+				"type": "varchar"
+			},
+			{
+				"name": "businesscard",
+				"type": "varchar"
+			},
+			{
+				"name": "businesscardattributes",
+				"type": "varchar"
+			},
+			{
+				"name": "callback",
+				"type": "varchar"
+			},
+			{
+				"name": "childrensnames",
+				"type": "varchar"
+			},
+			{
+				"name": "company",
+				"type": "varchar"
+			},
+			{
+				"name": "CR978_BIOGRAPHY",
+				"type": "varchar"
+			},
+			{
+				"name": "CR978_INSTAGRAM",
+				"type": "varchar"
+			},
+			{
+				"name": "CR978_LINKEDIN",
+				"type": "varchar"
+			},
+			{
+				"name": "cr978_militarybranch",
+				"type": "varchar"
+			},
+			{
+				"name": "cr978_militaryfamily",
+				"type": "varchar"
+			},
+			{
+				"name": "cr978_militaryspouse",
+				"type": "varchar"
+			},
+			{
+				"name": "cr978_militarystatus",
+				"type": "varchar"
+			},
+			{
+				"name": "cr978_msnfp_transaction",
+				"type": "varchar"
+			},
+			{
+				"name": "cr978_msnfp_transactionname",
+				"type": "varchar"
+			},
+			{
+				"name": "CR978_TWITTER",
+				"type": "varchar"
+			},
+			{
+				"name": "creditlimit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "creditlimit_base",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "creditonhold",
+				"type": "bit"
+			},
+			{
+				"name": "customersizecode",
+				"type": "varchar"
+			},
+			{
+				"name": "customertypecode",
+				"type": "varchar"
+			},
+			{
+				"name": "defaultpricelevelid",
+				"type": "varchar"
+			},
+			{
+				"name": "defaultpricelevelidname",
+				"type": "varchar"
+			},
+			{
+				"name": "department",
+				"type": "varchar"
+			},
+			{
+				"name": "description",
+				"type": "varchar"
+			},
+			{
+				"name": "donotbulkemail",
+				"type": "bit"
+			},
+			{
+				"name": "donotbulkpostalmail",
+				"type": "bit"
+			},
+			{
+				"name": "donotemail",
+				"type": "bit"
+			},
+			{
+				"name": "donotfax",
+				"type": "bit"
+			},
+			{
+				"name": "donotphone",
+				"type": "bit"
+			},
+			{
+				"name": "donotpostalmail",
+				"type": "bit"
+			},
+			{
+				"name": "donotsendmm",
+				"type": "bit"
+			},
+			{
+				"name": "educationcode",
+				"type": "varchar"
+			},
+			{
+				"name": "emailaddress1",
+				"type": "varchar"
+			},
+			{
+				"name": "emailaddress2",
+				"type": "varchar"
+			},
+			{
+				"name": "emailaddress3",
+				"type": "varchar"
+			},
+			{
+				"name": "employeeid",
+				"type": "varchar"
+			},
+			{
+				"name": "entityimage_timestamp",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "entityimage_url",
+				"type": "varchar"
+			},
+			{
+				"name": "entityimageid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "exchangerate",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "externaluseridentifier",
+				"type": "varchar"
+			},
+			{
+				"name": "familystatuscode",
+				"type": "varchar"
+			},
+			{
+				"name": "fax",
+				"type": "varchar"
+			},
+			{
+				"name": "firstname",
+				"type": "varchar"
+			},
+			{
+				"name": "followemail",
+				"type": "bit"
+			},
+			{
+				"name": "ftpsiteurl",
+				"type": "varchar"
+			},
+			{
+				"name": "fullname",
+				"type": "varchar"
+			},
+			{
+				"name": "gendercode",
+				"type": "varchar"
+			},
+			{
+				"name": "governmentid",
+				"type": "varchar"
+			},
+			{
+				"name": "haschildrencode",
+				"type": "varchar"
+			},
+			{
+				"name": "home2",
+				"type": "varchar"
+			},
+			{
+				"name": "importsequencenumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "isautocreate",
+				"type": "bit"
+			},
+			{
+				"name": "isbackofficecustomer",
+				"type": "bit"
+			},
+			{
+				"name": "isprivate",
+				"type": "bit"
+			},
+			{
+				"name": "jobtitle",
+				"type": "varchar"
+			},
+			{
+				"name": "lastname",
+				"type": "varchar"
+			},
+			{
+				"name": "lastonholdtime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "lastusedincampaign",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "leadsourcecode",
+				"type": "varchar"
+			},
+			{
+				"name": "managername",
+				"type": "varchar"
+			},
+			{
+				"name": "managerphone",
+				"type": "varchar"
+			},
+			{
+				"name": "marketingonly",
+				"type": "bit"
+			},
+			{
+				"name": "mastercontactidname",
+				"type": "varchar"
+			},
+			{
+				"name": "mastercontactidyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "masterid",
+				"type": "varchar"
+			},
+			{
+				"name": "merged",
+				"type": "bit"
+			},
+			{
+				"name": "middlename",
+				"type": "varchar"
+			},
+			{
+				"name": "mobilephone",
+				"type": "varchar"
+			},
+			{
+				"name": "msa_managingpartnerid",
+				"type": "varchar"
+			},
+			{
+				"name": "msa_managingpartneridname",
+				"type": "varchar"
+			},
+			{
+				"name": "msa_managingpartneridyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "msdyn_disablewebtracking",
+				"type": "bit"
+			},
+			{
+				"name": "msdyn_gdproptout",
+				"type": "bit"
+			},
+			{
+				"name": "msdyn_isminor",
+				"type": "bit"
+			},
+			{
+				"name": "msdyn_isminorwithparentalconsent",
+				"type": "bit"
+			},
+			{
+				"name": "msdyn_orgchangestatus",
+				"type": "varchar"
+			},
+			{
+				"name": "msdyn_portaltermsagreementdate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "msnfp_age",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "msnfp_anonymous",
+				"type": "bit"
+			},
+			{
+				"name": "msnfp_birthday",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_birthmonth",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_birthyear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "msnfp_contactaccountnumber",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_deceased",
+				"type": "bit"
+			},
+			{
+				"name": "msnfp_ethnicity",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_maidenname",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_primaryconstituenttype",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_reportstoid",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_reportstoidname",
+				"type": "varchar"
+			},
+			{
+				"name": "msnfp_reportstoidyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "nickname",
+				"type": "varchar"
+			},
+			{
+				"name": "numberofchildren",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "onholdtime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "originatingleadid",
+				"type": "varchar"
+			},
+			{
+				"name": "originatingleadidname",
+				"type": "varchar"
+			},
+			{
+				"name": "originatingleadidyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "overriddencreatedon",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ownerid",
+				"type": "varchar"
+			},
+			{
+				"name": "owneridname",
+				"type": "varchar"
+			},
+			{
+				"name": "owneridtype",
+				"type": "varchar"
+			},
+			{
+				"name": "owneridyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "owningbusinessunit",
+				"type": "varchar"
+			},
+			{
+				"name": "owningbusinessunitname",
+				"type": "varchar"
+			},
+			{
+				"name": "owningteam",
+				"type": "varchar"
+			},
+			{
+				"name": "owninguser",
+				"type": "varchar"
+			},
+			{
+				"name": "pager",
+				"type": "varchar"
+			},
+			{
+				"name": "parent_contactid",
+				"type": "varchar"
+			},
+			{
+				"name": "parent_contactidname",
+				"type": "varchar"
+			},
+			{
+				"name": "parent_contactidyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "parentcontactid",
+				"type": "varchar"
+			},
+			{
+				"name": "parentcontactidname",
+				"type": "varchar"
+			},
+			{
+				"name": "parentcontactidyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "parentcustomerid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "parentcustomeridname",
+				"type": "varchar"
+			},
+			{
+				"name": "parentcustomeridtype",
+				"type": "varchar"
+			},
+			{
+				"name": "parentcustomeridyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "participatesinworkflow",
+				"type": "bit"
+			},
+			{
+				"name": "paymenttermscode",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredappointmentdaycode",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredappointmenttimecode",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredcontactmethodcode",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredequipmentid",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredequipmentidname",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredserviceid",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredserviceidname",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredsystemuserid",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredsystemuseridname",
+				"type": "varchar"
+			},
+			{
+				"name": "preferredsystemuseridyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "processid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "salutation",
+				"type": "varchar"
+			},
+			{
+				"name": "shippingmethodcode",
+				"type": "varchar"
+			},
+			{
+				"name": "slaid",
+				"type": "varchar"
+			},
+			{
+				"name": "slainvokedid",
+				"type": "varchar"
+			},
+			{
+				"name": "slainvokedidname",
+				"type": "varchar"
+			},
+			{
+				"name": "slaname",
+				"type": "varchar"
+			},
+			{
+				"name": "spousesname",
+				"type": "varchar"
+			},
+			{
+				"name": "stageid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "statecode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "statuscode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "subscriptionid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "suffix",
+				"type": "varchar"
+			},
+			{
+				"name": "teamsfollowed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "telephone1",
+				"type": "varchar"
+			},
+			{
+				"name": "telephone2",
+				"type": "varchar"
+			},
+			{
+				"name": "telephone3",
+				"type": "varchar"
+			},
+			{
+				"name": "territorycode",
+				"type": "varchar"
+			},
+			{
+				"name": "timespentbymeonemailandmeetings",
+				"type": "varchar"
+			},
+			{
+				"name": "timezoneruleversionnumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "transactioncurrencyid",
+				"type": "varchar"
+			},
+			{
+				"name": "transactioncurrencyidname",
+				"type": "varchar"
+			},
+			{
+				"name": "traversedpath",
+				"type": "varchar"
+			},
+			{
+				"name": "utcconversiontimezonecode",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "versionnumber",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "websiteurl",
+				"type": "varchar"
+			},
+			{
+				"name": "yomifirstname",
+				"type": "varchar"
+			},
+			{
+				"name": "yomifullname",
+				"type": "varchar"
+			},
+			{
+				"name": "yomilastname",
+				"type": "varchar"
+			},
+			{
+				"name": "yomimiddlename",
+				"type": "varchar"
+			},
+			{
+				"name": "createdby",
+				"type": "varchar"
+			},
+			{
+				"name": "createdbyexternalparty",
+				"type": "varchar"
+			},
+			{
+				"name": "createdbyexternalpartyname",
+				"type": "varchar"
+			},
+			{
+				"name": "createdbyexternalpartyyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "createdbyname",
+				"type": "varchar"
+			},
+			{
+				"name": "createdbyyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "createdon",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "createdonbehalfby",
+				"type": "varchar"
+			},
+			{
+				"name": "createdonbehalfbyname",
+				"type": "varchar"
+			},
+			{
+				"name": "createdonbehalfbyyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedby",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedbyexternalparty",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedbyexternalpartyname",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedbyexternalpartyyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedbyname",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedbyyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedon",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "modifiedonbehalfby",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedonbehalfbyname",
+				"type": "varchar"
+			},
+			{
+				"name": "modifiedonbehalfbyyominame",
+				"type": "varchar"
+			},
+			{
+				"name": "Is_Current",
+				"type": "bit"
+			},
+			{
+				"name": "Start_Date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "End_Date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CRM_Contact"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

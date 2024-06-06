@@ -1,0 +1,363 @@
+{
+	"name": "Contacts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DWH_Contacts.xlsx",
+				"container": "adftrainingmahesh"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Contact_Key",
+				"type": "String"
+			},
+			{
+				"name": "Contact_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Account_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Account_Name",
+				"type": "String"
+			},
+			{
+				"name": "Address_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Annual_Income",
+				"type": "String"
+			},
+			{
+				"name": "Annual_Income_Base",
+				"type": "String"
+			},
+			{
+				"name": "Assistant_Name",
+				"type": "String"
+			},
+			{
+				"name": "Assistant_Phone",
+				"type": "String"
+			},
+			{
+				"name": "Business",
+				"type": "String"
+			},
+			{
+				"name": "Business_Card",
+				"type": "String"
+			},
+			{
+				"name": "Business_Card_Attributes",
+				"type": "String"
+			},
+			{
+				"name": "Callback",
+				"type": "String"
+			},
+			{
+				"name": "Company",
+				"type": "String"
+			},
+			{
+				"name": "Biography",
+				"type": "String"
+			},
+			{
+				"name": "Instagram",
+				"type": "String"
+			},
+			{
+				"name": "LinkedIn",
+				"type": "String"
+			},
+			{
+				"name": "Twitter",
+				"type": "String"
+			},
+			{
+				"name": "Militarybranch",
+				"type": "String"
+			},
+			{
+				"name": "Militaryfamily",
+				"type": "String"
+			},
+			{
+				"name": "Militaryspouse",
+				"type": "String"
+			},
+			{
+				"name": "Militarystatus",
+				"type": "String"
+			},
+			{
+				"name": "Transaction_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Transaction_Name",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Type_Code",
+				"type": "String"
+			},
+			{
+				"name": "Department",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Bulk_Email",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Bulk_Postalmail",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Email",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Fax",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Phone",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Postalmail",
+				"type": "String"
+			},
+			{
+				"name": "Donot_Sendmm",
+				"type": "String"
+			},
+			{
+				"name": "Education_Code",
+				"type": "String"
+			},
+			{
+				"name": "Email_Personal",
+				"type": "String"
+			},
+			{
+				"name": "Email_BunkerLabs",
+				"type": "String"
+			},
+			{
+				"name": "Email_Business",
+				"type": "String"
+			},
+			{
+				"name": "Employee_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Entity_Image_Timestamp",
+				"type": "String"
+			},
+			{
+				"name": "Entity_Image_Url",
+				"type": "String"
+			},
+			{
+				"name": "Entity_Imageid",
+				"type": "String"
+			},
+			{
+				"name": "Fax",
+				"type": "String"
+			},
+			{
+				"name": "First_Name",
+				"type": "String"
+			},
+			{
+				"name": "Follow_Email",
+				"type": "String"
+			},
+			{
+				"name": "Full_Name",
+				"type": "String"
+			},
+			{
+				"name": "Gender_Code",
+				"type": "String"
+			},
+			{
+				"name": "Government_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Has_Children_Code",
+				"type": "String"
+			},
+			{
+				"name": "Is_Auto_Create",
+				"type": "String"
+			},
+			{
+				"name": "Job_title",
+				"type": "String"
+			},
+			{
+				"name": "Last_Name",
+				"type": "String"
+			},
+			{
+				"name": "Last_On_Hold_Time",
+				"type": "String"
+			},
+			{
+				"name": "Last_Used_In_Campaign",
+				"type": "String"
+			},
+			{
+				"name": "Lead_Source_Code",
+				"type": "String"
+			},
+			{
+				"name": "Manager_Name",
+				"type": "String"
+			},
+			{
+				"name": "Manager_Phone",
+				"type": "String"
+			},
+			{
+				"name": "Middle_Name",
+				"type": "String"
+			},
+			{
+				"name": "Mobile_Phone",
+				"type": "String"
+			},
+			{
+				"name": "Deceased",
+				"type": "String"
+			},
+			{
+				"name": "Ethnicity",
+				"type": "String"
+			},
+			{
+				"name": "Maiden_Name",
+				"type": "String"
+			},
+			{
+				"name": "Primary_Constituent_Type",
+				"type": "String"
+			},
+			{
+				"name": "Nickname",
+				"type": "String"
+			},
+			{
+				"name": "Overridden_Created_On",
+				"type": "String"
+			},
+			{
+				"name": "Parent_Customer_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Salutation",
+				"type": "String"
+			},
+			{
+				"name": "Spouse_Name",
+				"type": "String"
+			},
+			{
+				"name": "Stage_GUID",
+				"type": "String"
+			},
+			{
+				"name": "State_Code",
+				"type": "String"
+			},
+			{
+				"name": "Status_Code",
+				"type": "String"
+			},
+			{
+				"name": "Subscription_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Suffix",
+				"type": "String"
+			},
+			{
+				"name": "Territory_Code",
+				"type": "String"
+			},
+			{
+				"name": "Website_Url",
+				"type": "String"
+			},
+			{
+				"name": "Ownerid",
+				"type": "String"
+			},
+			{
+				"name": "Owningbusinessunit",
+				"type": "String"
+			},
+			{
+				"name": "Owningteam",
+				"type": "String"
+			},
+			{
+				"name": "Owninguser",
+				"type": "String"
+			},
+			{
+				"name": "Createdby",
+				"type": "String"
+			},
+			{
+				"name": "Createdon",
+				"type": "String"
+			},
+			{
+				"name": "Modified_By",
+				"type": "String"
+			},
+			{
+				"name": "Modified_On",
+				"type": "String"
+			},
+			{
+				"name": "Start_Date",
+				"type": "String"
+			},
+			{
+				"name": "End_Date",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

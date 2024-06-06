@@ -1,0 +1,59 @@
+{
+	"name": "Contacts_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DWH_Contacts_demo.xlsx",
+				"container": "adftrainingmahesh"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Contact_Key",
+				"type": "String"
+			},
+			{
+				"name": "Contact_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Account_GUID",
+				"type": "String"
+			},
+			{
+				"name": "Account_Name",
+				"type": "String"
+			},
+			{
+				"name": "Annual_Income",
+				"type": "String"
+			},
+			{
+				"name": "Annual_Income_Base",
+				"type": "String"
+			},
+			{
+				"name": "Is_Current",
+				"type": "String"
+			},
+			{
+				"name": "Start_Date",
+				"type": "String"
+			},
+			{
+				"name": "End_Date",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

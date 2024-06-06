@@ -1,0 +1,20 @@
+{
+	"name": "input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "employees.txt",
+				"folderPath": "input",
+				"container": "adftrainingmahesh"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

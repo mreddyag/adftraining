@@ -1,0 +1,9 @@
+{
+	"name": "adf-devit-training",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c68b2abe-d730-4f8d-9053-2e5e0ac63d43",
+		"tenantId": "7eb749a1-a2ec-4260-bb87-c77c7a0a0b7a"
+	}
+}
