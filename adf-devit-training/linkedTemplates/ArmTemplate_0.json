@@ -1,0 +1,3145 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-devit-training"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"GitHubTest_credential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'credential' of 'GitHubTest'"
+		},
+		"Mahesh_Test_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Mahesh_Test'"
+		},
+		"GitHubTest_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "mreddyag"
+		},
+		"Mahesh_Test_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "CENTAURI\\SQL2019"
+		},
+		"Mahesh_Test_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Mahesh_test"
+		},
+		"Mahesh_Test_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GitHubTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "GitHub",
+				"typeProperties": {
+					"username": "[parameters('GitHubTest_properties_typeProperties_username')]",
+					"credential": {
+						"type": "SecureString",
+						"value": "[parameters('GitHubTest_credential')]"
+					},
+					"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQERGRTQzRURGLUIwQjUtNDlERS1BQjg3LUEwOTFBN0UwMzY1MF8yYzZiYzE4NC1mOTY5LTRjZjMtOTczMy0xOTQ1ZWM4YTZiYTkiDQp9"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mahesh_Test')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('Mahesh_Test_properties_typeProperties_server')]",
+					"database": "[parameters('Mahesh_Test_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"hostNameInCertificate": "",
+					"authenticationType": "SQL",
+					"userName": "[parameters('Mahesh_Test_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Mahesh_Test_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CRM_contact')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "contactid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "accountid",
+						"type": "varchar"
+					},
+					{
+						"name": "accountidname",
+						"type": "varchar"
+					},
+					{
+						"name": "accountidyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "accountrolecode",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_addressid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "address1_addresstypecode",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_city",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_composite",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_country",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_county",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_fax",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_freighttermscode",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_latitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "address1_line1",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_line2",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_line3",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_longitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "address1_name",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_postalcode",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_postofficebox",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_primarycontactname",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_shippingmethodcode",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_stateorprovince",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_telephone1",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_telephone2",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_telephone3",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_upszone",
+						"type": "varchar"
+					},
+					{
+						"name": "address1_utcoffset",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "address2_addressid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "address2_addresstypecode",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_city",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_composite",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_country",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_county",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_fax",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_freighttermscode",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_latitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "address2_line1",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_line2",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_line3",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_longitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "address2_name",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_postalcode",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_postofficebox",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_primarycontactname",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_shippingmethodcode",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_stateorprovince",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_telephone1",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_telephone2",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_telephone3",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_upszone",
+						"type": "varchar"
+					},
+					{
+						"name": "address2_utcoffset",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "address3_addressid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "address3_addresstypecode",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_city",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_composite",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_country",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_county",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_fax",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_freighttermscode",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_latitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "address3_line1",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_line2",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_line3",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_longitude",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "address3_name",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_postalcode",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_postofficebox",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_primarycontactname",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_shippingmethodcode",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_stateorprovince",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_telephone1",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_telephone2",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_telephone3",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_upszone",
+						"type": "varchar"
+					},
+					{
+						"name": "address3_utcoffset",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "adx_confirmremovepassword",
+						"type": "bit"
+					},
+					{
+						"name": "adx_createdbyipaddress",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_createdbyusername",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_identity_accessfailedcount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "adx_identity_emailaddress1confirmed",
+						"type": "bit"
+					},
+					{
+						"name": "adx_identity_lastsuccessfullogin",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "adx_identity_locallogindisabled",
+						"type": "bit"
+					},
+					{
+						"name": "adx_identity_lockoutenabled",
+						"type": "bit"
+					},
+					{
+						"name": "adx_identity_lockoutenddate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "adx_identity_logonenabled",
+						"type": "bit"
+					},
+					{
+						"name": "adx_identity_mobilephoneconfirmed",
+						"type": "bit"
+					},
+					{
+						"name": "adx_identity_newpassword",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_identity_passwordhash",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_identity_securitystamp",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_identity_twofactorenabled",
+						"type": "bit"
+					},
+					{
+						"name": "adx_identity_username",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_modifiedbyipaddress",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_modifiedbyusername",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_organizationname",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_preferredlanguageid",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_preferredlanguageidname",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_profilealert",
+						"type": "bit"
+					},
+					{
+						"name": "adx_profilealertdate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "adx_profilealertinstructions",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_profileisanonymous",
+						"type": "bit"
+					},
+					{
+						"name": "adx_profilelastactivity",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "adx_profilemodifiedon",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "adx_publicprofilecopy",
+						"type": "varchar"
+					},
+					{
+						"name": "adx_timezone",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "aging30",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "aging30_base",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "aging60",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "aging60_base",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "aging90",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "aging90_base",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "anniversary",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "annualincome",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "annualincome_base",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "assistantname",
+						"type": "varchar"
+					},
+					{
+						"name": "assistantphone",
+						"type": "varchar"
+					},
+					{
+						"name": "birthdate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "business2",
+						"type": "varchar"
+					},
+					{
+						"name": "businesscard",
+						"type": "varchar"
+					},
+					{
+						"name": "businesscardattributes",
+						"type": "varchar"
+					},
+					{
+						"name": "callback",
+						"type": "varchar"
+					},
+					{
+						"name": "childrensnames",
+						"type": "varchar"
+					},
+					{
+						"name": "company",
+						"type": "varchar"
+					},
+					{
+						"name": "CR978_BIOGRAPHY",
+						"type": "varchar"
+					},
+					{
+						"name": "CR978_INSTAGRAM",
+						"type": "varchar"
+					},
+					{
+						"name": "CR978_LINKEDIN",
+						"type": "varchar"
+					},
+					{
+						"name": "cr978_militarybranch",
+						"type": "varchar"
+					},
+					{
+						"name": "cr978_militaryfamily",
+						"type": "varchar"
+					},
+					{
+						"name": "cr978_militaryspouse",
+						"type": "varchar"
+					},
+					{
+						"name": "cr978_militarystatus",
+						"type": "varchar"
+					},
+					{
+						"name": "cr978_msnfp_transaction",
+						"type": "varchar"
+					},
+					{
+						"name": "cr978_msnfp_transactionname",
+						"type": "varchar"
+					},
+					{
+						"name": "CR978_TWITTER",
+						"type": "varchar"
+					},
+					{
+						"name": "creditlimit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "creditlimit_base",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "creditonhold",
+						"type": "bit"
+					},
+					{
+						"name": "customersizecode",
+						"type": "varchar"
+					},
+					{
+						"name": "customertypecode",
+						"type": "varchar"
+					},
+					{
+						"name": "defaultpricelevelid",
+						"type": "varchar"
+					},
+					{
+						"name": "defaultpricelevelidname",
+						"type": "varchar"
+					},
+					{
+						"name": "department",
+						"type": "varchar"
+					},
+					{
+						"name": "description",
+						"type": "varchar"
+					},
+					{
+						"name": "donotbulkemail",
+						"type": "bit"
+					},
+					{
+						"name": "donotbulkpostalmail",
+						"type": "bit"
+					},
+					{
+						"name": "donotemail",
+						"type": "bit"
+					},
+					{
+						"name": "donotfax",
+						"type": "bit"
+					},
+					{
+						"name": "donotphone",
+						"type": "bit"
+					},
+					{
+						"name": "donotpostalmail",
+						"type": "bit"
+					},
+					{
+						"name": "donotsendmm",
+						"type": "bit"
+					},
+					{
+						"name": "educationcode",
+						"type": "varchar"
+					},
+					{
+						"name": "emailaddress1",
+						"type": "varchar"
+					},
+					{
+						"name": "emailaddress2",
+						"type": "varchar"
+					},
+					{
+						"name": "emailaddress3",
+						"type": "varchar"
+					},
+					{
+						"name": "employeeid",
+						"type": "varchar"
+					},
+					{
+						"name": "entityimage_timestamp",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "entityimage_url",
+						"type": "varchar"
+					},
+					{
+						"name": "entityimageid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "exchangerate",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "externaluseridentifier",
+						"type": "varchar"
+					},
+					{
+						"name": "familystatuscode",
+						"type": "varchar"
+					},
+					{
+						"name": "fax",
+						"type": "varchar"
+					},
+					{
+						"name": "firstname",
+						"type": "varchar"
+					},
+					{
+						"name": "followemail",
+						"type": "bit"
+					},
+					{
+						"name": "ftpsiteurl",
+						"type": "varchar"
+					},
+					{
+						"name": "fullname",
+						"type": "varchar"
+					},
+					{
+						"name": "gendercode",
+						"type": "varchar"
+					},
+					{
+						"name": "governmentid",
+						"type": "varchar"
+					},
+					{
+						"name": "haschildrencode",
+						"type": "varchar"
+					},
+					{
+						"name": "home2",
+						"type": "varchar"
+					},
+					{
+						"name": "importsequencenumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "isautocreate",
+						"type": "bit"
+					},
+					{
+						"name": "isbackofficecustomer",
+						"type": "bit"
+					},
+					{
+						"name": "isprivate",
+						"type": "bit"
+					},
+					{
+						"name": "jobtitle",
+						"type": "varchar"
+					},
+					{
+						"name": "lastname",
+						"type": "varchar"
+					},
+					{
+						"name": "lastonholdtime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "lastusedincampaign",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "leadsourcecode",
+						"type": "varchar"
+					},
+					{
+						"name": "managername",
+						"type": "varchar"
+					},
+					{
+						"name": "managerphone",
+						"type": "varchar"
+					},
+					{
+						"name": "marketingonly",
+						"type": "bit"
+					},
+					{
+						"name": "mastercontactidname",
+						"type": "varchar"
+					},
+					{
+						"name": "mastercontactidyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "masterid",
+						"type": "varchar"
+					},
+					{
+						"name": "merged",
+						"type": "bit"
+					},
+					{
+						"name": "middlename",
+						"type": "varchar"
+					},
+					{
+						"name": "mobilephone",
+						"type": "varchar"
+					},
+					{
+						"name": "msa_managingpartnerid",
+						"type": "varchar"
+					},
+					{
+						"name": "msa_managingpartneridname",
+						"type": "varchar"
+					},
+					{
+						"name": "msa_managingpartneridyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "msdyn_disablewebtracking",
+						"type": "bit"
+					},
+					{
+						"name": "msdyn_gdproptout",
+						"type": "bit"
+					},
+					{
+						"name": "msdyn_isminor",
+						"type": "bit"
+					},
+					{
+						"name": "msdyn_isminorwithparentalconsent",
+						"type": "bit"
+					},
+					{
+						"name": "msdyn_orgchangestatus",
+						"type": "varchar"
+					},
+					{
+						"name": "msdyn_portaltermsagreementdate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "msnfp_age",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "msnfp_anonymous",
+						"type": "bit"
+					},
+					{
+						"name": "msnfp_birthday",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_birthmonth",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_birthyear",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "msnfp_contactaccountnumber",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_deceased",
+						"type": "bit"
+					},
+					{
+						"name": "msnfp_ethnicity",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_maidenname",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_primaryconstituenttype",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_reportstoid",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_reportstoidname",
+						"type": "varchar"
+					},
+					{
+						"name": "msnfp_reportstoidyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "nickname",
+						"type": "varchar"
+					},
+					{
+						"name": "numberofchildren",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "onholdtime",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "originatingleadid",
+						"type": "varchar"
+					},
+					{
+						"name": "originatingleadidname",
+						"type": "varchar"
+					},
+					{
+						"name": "originatingleadidyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "overriddencreatedon",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ownerid",
+						"type": "varchar"
+					},
+					{
+						"name": "owneridname",
+						"type": "varchar"
+					},
+					{
+						"name": "owneridtype",
+						"type": "varchar"
+					},
+					{
+						"name": "owneridyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "owningbusinessunit",
+						"type": "varchar"
+					},
+					{
+						"name": "owningbusinessunitname",
+						"type": "varchar"
+					},
+					{
+						"name": "owningteam",
+						"type": "varchar"
+					},
+					{
+						"name": "owninguser",
+						"type": "varchar"
+					},
+					{
+						"name": "pager",
+						"type": "varchar"
+					},
+					{
+						"name": "parent_contactid",
+						"type": "varchar"
+					},
+					{
+						"name": "parent_contactidname",
+						"type": "varchar"
+					},
+					{
+						"name": "parent_contactidyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "parentcontactid",
+						"type": "varchar"
+					},
+					{
+						"name": "parentcontactidname",
+						"type": "varchar"
+					},
+					{
+						"name": "parentcontactidyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "parentcustomerid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "parentcustomeridname",
+						"type": "varchar"
+					},
+					{
+						"name": "parentcustomeridtype",
+						"type": "varchar"
+					},
+					{
+						"name": "parentcustomeridyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "participatesinworkflow",
+						"type": "bit"
+					},
+					{
+						"name": "paymenttermscode",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredappointmentdaycode",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredappointmenttimecode",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredcontactmethodcode",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredequipmentid",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredequipmentidname",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredserviceid",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredserviceidname",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredsystemuserid",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredsystemuseridname",
+						"type": "varchar"
+					},
+					{
+						"name": "preferredsystemuseridyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "processid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "salutation",
+						"type": "varchar"
+					},
+					{
+						"name": "shippingmethodcode",
+						"type": "varchar"
+					},
+					{
+						"name": "slaid",
+						"type": "varchar"
+					},
+					{
+						"name": "slainvokedid",
+						"type": "varchar"
+					},
+					{
+						"name": "slainvokedidname",
+						"type": "varchar"
+					},
+					{
+						"name": "slaname",
+						"type": "varchar"
+					},
+					{
+						"name": "spousesname",
+						"type": "varchar"
+					},
+					{
+						"name": "stageid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "statecode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "statuscode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "subscriptionid",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "suffix",
+						"type": "varchar"
+					},
+					{
+						"name": "teamsfollowed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "telephone1",
+						"type": "varchar"
+					},
+					{
+						"name": "telephone2",
+						"type": "varchar"
+					},
+					{
+						"name": "telephone3",
+						"type": "varchar"
+					},
+					{
+						"name": "territorycode",
+						"type": "varchar"
+					},
+					{
+						"name": "timespentbymeonemailandmeetings",
+						"type": "varchar"
+					},
+					{
+						"name": "timezoneruleversionnumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "transactioncurrencyid",
+						"type": "varchar"
+					},
+					{
+						"name": "transactioncurrencyidname",
+						"type": "varchar"
+					},
+					{
+						"name": "traversedpath",
+						"type": "varchar"
+					},
+					{
+						"name": "utcconversiontimezonecode",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "versionnumber",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "websiteurl",
+						"type": "varchar"
+					},
+					{
+						"name": "yomifirstname",
+						"type": "varchar"
+					},
+					{
+						"name": "yomifullname",
+						"type": "varchar"
+					},
+					{
+						"name": "yomilastname",
+						"type": "varchar"
+					},
+					{
+						"name": "yomimiddlename",
+						"type": "varchar"
+					},
+					{
+						"name": "createdby",
+						"type": "varchar"
+					},
+					{
+						"name": "createdbyexternalparty",
+						"type": "varchar"
+					},
+					{
+						"name": "createdbyexternalpartyname",
+						"type": "varchar"
+					},
+					{
+						"name": "createdbyexternalpartyyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "createdbyname",
+						"type": "varchar"
+					},
+					{
+						"name": "createdbyyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "createdon",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "createdonbehalfby",
+						"type": "varchar"
+					},
+					{
+						"name": "createdonbehalfbyname",
+						"type": "varchar"
+					},
+					{
+						"name": "createdonbehalfbyyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedby",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedbyexternalparty",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedbyexternalpartyname",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedbyexternalpartyyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedbyname",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedbyyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedon",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "modifiedonbehalfby",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedonbehalfbyname",
+						"type": "varchar"
+					},
+					{
+						"name": "modifiedonbehalfbyyominame",
+						"type": "varchar"
+					},
+					{
+						"name": "Is_Current",
+						"type": "bit"
+					},
+					{
+						"name": "Start_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "End_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CRM_Contact"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Contacts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet1",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DWH_Contacts.xlsx",
+						"container": "adftrainingmahesh"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Contact_Key",
+						"type": "String"
+					},
+					{
+						"name": "Contact_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Account_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Account_Name",
+						"type": "String"
+					},
+					{
+						"name": "Address_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Annual_Income",
+						"type": "String"
+					},
+					{
+						"name": "Annual_Income_Base",
+						"type": "String"
+					},
+					{
+						"name": "Assistant_Name",
+						"type": "String"
+					},
+					{
+						"name": "Assistant_Phone",
+						"type": "String"
+					},
+					{
+						"name": "Business",
+						"type": "String"
+					},
+					{
+						"name": "Business_Card",
+						"type": "String"
+					},
+					{
+						"name": "Business_Card_Attributes",
+						"type": "String"
+					},
+					{
+						"name": "Callback",
+						"type": "String"
+					},
+					{
+						"name": "Company",
+						"type": "String"
+					},
+					{
+						"name": "Biography",
+						"type": "String"
+					},
+					{
+						"name": "Instagram",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn",
+						"type": "String"
+					},
+					{
+						"name": "Twitter",
+						"type": "String"
+					},
+					{
+						"name": "Militarybranch",
+						"type": "String"
+					},
+					{
+						"name": "Militaryfamily",
+						"type": "String"
+					},
+					{
+						"name": "Militaryspouse",
+						"type": "String"
+					},
+					{
+						"name": "Militarystatus",
+						"type": "String"
+					},
+					{
+						"name": "Transaction_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Transaction_Name",
+						"type": "String"
+					},
+					{
+						"name": "Customer_Type_Code",
+						"type": "String"
+					},
+					{
+						"name": "Department",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Bulk_Email",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Bulk_Postalmail",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Email",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Fax",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Phone",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Postalmail",
+						"type": "String"
+					},
+					{
+						"name": "Donot_Sendmm",
+						"type": "String"
+					},
+					{
+						"name": "Education_Code",
+						"type": "String"
+					},
+					{
+						"name": "Email_Personal",
+						"type": "String"
+					},
+					{
+						"name": "Email_BunkerLabs",
+						"type": "String"
+					},
+					{
+						"name": "Email_Business",
+						"type": "String"
+					},
+					{
+						"name": "Employee_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Entity_Image_Timestamp",
+						"type": "String"
+					},
+					{
+						"name": "Entity_Image_Url",
+						"type": "String"
+					},
+					{
+						"name": "Entity_Imageid",
+						"type": "String"
+					},
+					{
+						"name": "Fax",
+						"type": "String"
+					},
+					{
+						"name": "First_Name",
+						"type": "String"
+					},
+					{
+						"name": "Follow_Email",
+						"type": "String"
+					},
+					{
+						"name": "Full_Name",
+						"type": "String"
+					},
+					{
+						"name": "Gender_Code",
+						"type": "String"
+					},
+					{
+						"name": "Government_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Has_Children_Code",
+						"type": "String"
+					},
+					{
+						"name": "Is_Auto_Create",
+						"type": "String"
+					},
+					{
+						"name": "Job_title",
+						"type": "String"
+					},
+					{
+						"name": "Last_Name",
+						"type": "String"
+					},
+					{
+						"name": "Last_On_Hold_Time",
+						"type": "String"
+					},
+					{
+						"name": "Last_Used_In_Campaign",
+						"type": "String"
+					},
+					{
+						"name": "Lead_Source_Code",
+						"type": "String"
+					},
+					{
+						"name": "Manager_Name",
+						"type": "String"
+					},
+					{
+						"name": "Manager_Phone",
+						"type": "String"
+					},
+					{
+						"name": "Middle_Name",
+						"type": "String"
+					},
+					{
+						"name": "Mobile_Phone",
+						"type": "String"
+					},
+					{
+						"name": "Deceased",
+						"type": "String"
+					},
+					{
+						"name": "Ethnicity",
+						"type": "String"
+					},
+					{
+						"name": "Maiden_Name",
+						"type": "String"
+					},
+					{
+						"name": "Primary_Constituent_Type",
+						"type": "String"
+					},
+					{
+						"name": "Nickname",
+						"type": "String"
+					},
+					{
+						"name": "Overridden_Created_On",
+						"type": "String"
+					},
+					{
+						"name": "Parent_Customer_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Salutation",
+						"type": "String"
+					},
+					{
+						"name": "Spouse_Name",
+						"type": "String"
+					},
+					{
+						"name": "Stage_GUID",
+						"type": "String"
+					},
+					{
+						"name": "State_Code",
+						"type": "String"
+					},
+					{
+						"name": "Status_Code",
+						"type": "String"
+					},
+					{
+						"name": "Subscription_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Suffix",
+						"type": "String"
+					},
+					{
+						"name": "Territory_Code",
+						"type": "String"
+					},
+					{
+						"name": "Website_Url",
+						"type": "String"
+					},
+					{
+						"name": "Ownerid",
+						"type": "String"
+					},
+					{
+						"name": "Owningbusinessunit",
+						"type": "String"
+					},
+					{
+						"name": "Owningteam",
+						"type": "String"
+					},
+					{
+						"name": "Owninguser",
+						"type": "String"
+					},
+					{
+						"name": "Createdby",
+						"type": "String"
+					},
+					{
+						"name": "Createdon",
+						"type": "String"
+					},
+					{
+						"name": "Modified_By",
+						"type": "String"
+					},
+					{
+						"name": "Modified_On",
+						"type": "String"
+					},
+					{
+						"name": "Start_Date",
+						"type": "String"
+					},
+					{
+						"name": "End_Date",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Contacts_copy1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet1",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DWH_Contacts_demo.xlsx",
+						"container": "adftrainingmahesh"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Contact_Key",
+						"type": "String"
+					},
+					{
+						"name": "Contact_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Account_GUID",
+						"type": "String"
+					},
+					{
+						"name": "Account_Name",
+						"type": "String"
+					},
+					{
+						"name": "Annual_Income",
+						"type": "String"
+					},
+					{
+						"name": "Annual_Income_Base",
+						"type": "String"
+					},
+					{
+						"name": "Is_Current",
+						"type": "String"
+					},
+					{
+						"name": "Start_Date",
+						"type": "String"
+					},
+					{
+						"name": "End_Date",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/input')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "employees.txt",
+						"folderPath": "input",
+						"container": "adftrainingmahesh"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/output')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "employees_output.txt",
+						"folderPath": "output",
+						"container": "adftrainingmahesh"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/copydemo')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy employee details",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "input",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "output",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-05-15T09:58:20Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/input')]",
+				"[concat(variables('factoryId'), '/datasets/output')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Contacts_copy1",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						},
+						{
+							"dataset": {
+								"referenceName": "CRM_contact",
+								"type": "DatasetReference"
+							},
+							"name": "source2"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "CRM_contact",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "CRM_contact",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "AddHashKeySRC"
+						},
+						{
+							"name": "AddHashKeyDES"
+						},
+						{
+							"name": "FilterForCurrentDWH"
+						},
+						{
+							"name": "FilterForCurrentSRC"
+						},
+						{
+							"name": "NewRows"
+						},
+						{
+							"name": "FilterForUpdate"
+						},
+						{
+							"name": "derivedColumn4"
+						},
+						{
+							"name": "RemoveUnwantedColumns"
+						},
+						{
+							"name": "MarkAsInsert"
+						},
+						{
+							"name": "UpdateObsolete"
+						},
+						{
+							"name": "alterRow1"
+						},
+						{
+							"name": "select2"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Contact_Key as string,",
+						"          Contact_GUID as string,",
+						"          Account_GUID as string,",
+						"          Account_Name as string,",
+						"          Annual_Income as string,",
+						"          Annual_Income_Base as string,",
+						"          Is_Current as boolean,",
+						"          Start_Date as string,",
+						"          End_Date as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source(output(",
+						"          ID as long,",
+						"          contactid as string,",
+						"          accountid as string,",
+						"          accountidname as string,",
+						"          accountidyominame as string,",
+						"          accountrolecode as string,",
+						"          address1_addressid as string,",
+						"          address1_addresstypecode as string,",
+						"          address1_city as string,",
+						"          address1_composite as string,",
+						"          address1_country as string,",
+						"          address1_county as string,",
+						"          address1_fax as string,",
+						"          address1_freighttermscode as string,",
+						"          address1_latitude as double,",
+						"          address1_line1 as string,",
+						"          address1_line2 as string,",
+						"          address1_line3 as string,",
+						"          address1_longitude as double,",
+						"          address1_name as string,",
+						"          address1_postalcode as string,",
+						"          address1_postofficebox as string,",
+						"          address1_primarycontactname as string,",
+						"          address1_shippingmethodcode as string,",
+						"          address1_stateorprovince as string,",
+						"          address1_telephone1 as string,",
+						"          address1_telephone2 as string,",
+						"          address1_telephone3 as string,",
+						"          address1_upszone as string,",
+						"          address1_utcoffset as integer,",
+						"          address2_addressid as string,",
+						"          address2_addresstypecode as string,",
+						"          address2_city as string,",
+						"          address2_composite as string,",
+						"          address2_country as string,",
+						"          address2_county as string,",
+						"          address2_fax as string,",
+						"          address2_freighttermscode as string,",
+						"          address2_latitude as double,",
+						"          address2_line1 as string,",
+						"          address2_line2 as string,",
+						"          address2_line3 as string,",
+						"          address2_longitude as double,",
+						"          address2_name as string,",
+						"          address2_postalcode as string,",
+						"          address2_postofficebox as string,",
+						"          address2_primarycontactname as string,",
+						"          address2_shippingmethodcode as string,",
+						"          address2_stateorprovince as string,",
+						"          address2_telephone1 as string,",
+						"          address2_telephone2 as string,",
+						"          address2_telephone3 as string,",
+						"          address2_upszone as string,",
+						"          address2_utcoffset as integer,",
+						"          address3_addressid as string,",
+						"          address3_addresstypecode as string,",
+						"          address3_city as string,",
+						"          address3_composite as string,",
+						"          address3_country as string,",
+						"          address3_county as string,",
+						"          address3_fax as string,",
+						"          address3_freighttermscode as string,",
+						"          address3_latitude as double,",
+						"          address3_line1 as string,",
+						"          address3_line2 as string,",
+						"          address3_line3 as string,",
+						"          address3_longitude as double,",
+						"          address3_name as string,",
+						"          address3_postalcode as string,",
+						"          address3_postofficebox as string,",
+						"          address3_primarycontactname as string,",
+						"          address3_shippingmethodcode as string,",
+						"          address3_stateorprovince as string,",
+						"          address3_telephone1 as string,",
+						"          address3_telephone2 as string,",
+						"          address3_telephone3 as string,",
+						"          address3_upszone as string,",
+						"          address3_utcoffset as integer,",
+						"          adx_confirmremovepassword as boolean,",
+						"          adx_createdbyipaddress as string,",
+						"          adx_createdbyusername as string,",
+						"          adx_identity_accessfailedcount as integer,",
+						"          adx_identity_emailaddress1confirmed as boolean,",
+						"          adx_identity_lastsuccessfullogin as timestamp,",
+						"          adx_identity_locallogindisabled as boolean,",
+						"          adx_identity_lockoutenabled as boolean,",
+						"          adx_identity_lockoutenddate as timestamp,",
+						"          adx_identity_logonenabled as boolean,",
+						"          adx_identity_mobilephoneconfirmed as boolean,",
+						"          adx_identity_newpassword as string,",
+						"          adx_identity_passwordhash as string,",
+						"          adx_identity_securitystamp as string,",
+						"          adx_identity_twofactorenabled as boolean,",
+						"          adx_identity_username as string,",
+						"          adx_modifiedbyipaddress as string,",
+						"          adx_modifiedbyusername as string,",
+						"          adx_organizationname as string,",
+						"          adx_preferredlanguageid as string,",
+						"          adx_preferredlanguageidname as string,",
+						"          adx_profilealert as boolean,",
+						"          adx_profilealertdate as timestamp,",
+						"          adx_profilealertinstructions as string,",
+						"          adx_profileisanonymous as boolean,",
+						"          adx_profilelastactivity as timestamp,",
+						"          adx_profilemodifiedon as timestamp,",
+						"          adx_publicprofilecopy as string,",
+						"          adx_timezone as integer,",
+						"          aging30 as double,",
+						"          aging30_base as double,",
+						"          aging60 as double,",
+						"          aging60_base as double,",
+						"          aging90 as double,",
+						"          aging90_base as double,",
+						"          anniversary as timestamp,",
+						"          annualincome as double,",
+						"          annualincome_base as double,",
+						"          assistantname as string,",
+						"          assistantphone as string,",
+						"          birthdate as timestamp,",
+						"          business2 as string,",
+						"          businesscard as string,",
+						"          businesscardattributes as string,",
+						"          callback as string,",
+						"          childrensnames as string,",
+						"          company as string,",
+						"          CR978_BIOGRAPHY as string,",
+						"          CR978_INSTAGRAM as string,",
+						"          CR978_LINKEDIN as string,",
+						"          cr978_militarybranch as string,",
+						"          cr978_militaryfamily as string,",
+						"          cr978_militaryspouse as string,",
+						"          cr978_militarystatus as string,",
+						"          cr978_msnfp_transaction as string,",
+						"          cr978_msnfp_transactionname as string,",
+						"          CR978_TWITTER as string,",
+						"          creditlimit as double,",
+						"          creditlimit_base as double,",
+						"          creditonhold as boolean,",
+						"          customersizecode as string,",
+						"          customertypecode as string,",
+						"          defaultpricelevelid as string,",
+						"          defaultpricelevelidname as string,",
+						"          department as string,",
+						"          description as string,",
+						"          donotbulkemail as boolean,",
+						"          donotbulkpostalmail as boolean,",
+						"          donotemail as boolean,",
+						"          donotfax as boolean,",
+						"          donotphone as boolean,",
+						"          donotpostalmail as boolean,",
+						"          donotsendmm as boolean,",
+						"          educationcode as string,",
+						"          emailaddress1 as string,",
+						"          emailaddress2 as string,",
+						"          emailaddress3 as string,",
+						"          employeeid as string,",
+						"          entityimage_timestamp as long,",
+						"          entityimage_url as string,",
+						"          entityimageid as string,",
+						"          exchangerate as double,",
+						"          externaluseridentifier as string,",
+						"          familystatuscode as string,",
+						"          fax as string,",
+						"          firstname as string,",
+						"          followemail as boolean,",
+						"          ftpsiteurl as string,",
+						"          fullname as string,",
+						"          gendercode as string,",
+						"          governmentid as string,",
+						"          haschildrencode as string,",
+						"          home2 as string,",
+						"          importsequencenumber as integer,",
+						"          isautocreate as boolean,",
+						"          isbackofficecustomer as boolean,",
+						"          isprivate as boolean,",
+						"          jobtitle as string,",
+						"          lastname as string,",
+						"          lastonholdtime as timestamp,",
+						"          lastusedincampaign as timestamp,",
+						"          leadsourcecode as string,",
+						"          managername as string,",
+						"          managerphone as string,",
+						"          marketingonly as boolean,",
+						"          mastercontactidname as string,",
+						"          mastercontactidyominame as string,",
+						"          masterid as string,",
+						"          merged as boolean,",
+						"          middlename as string,",
+						"          mobilephone as string,",
+						"          msa_managingpartnerid as string,",
+						"          msa_managingpartneridname as string,",
+						"          msa_managingpartneridyominame as string,",
+						"          msdyn_disablewebtracking as boolean,",
+						"          msdyn_gdproptout as boolean,",
+						"          msdyn_isminor as boolean,",
+						"          msdyn_isminorwithparentalconsent as boolean,",
+						"          msdyn_orgchangestatus as string,",
+						"          msdyn_portaltermsagreementdate as timestamp,",
+						"          msnfp_age as integer,",
+						"          msnfp_anonymous as boolean,",
+						"          msnfp_birthday as string,",
+						"          msnfp_birthmonth as string,",
+						"          msnfp_birthyear as integer,",
+						"          msnfp_contactaccountnumber as string,",
+						"          msnfp_deceased as boolean,",
+						"          msnfp_ethnicity as string,",
+						"          msnfp_maidenname as string,",
+						"          msnfp_primaryconstituenttype as string,",
+						"          msnfp_reportstoid as string,",
+						"          msnfp_reportstoidname as string,",
+						"          msnfp_reportstoidyominame as string,",
+						"          nickname as string,",
+						"          numberofchildren as integer,",
+						"          onholdtime as integer,",
+						"          originatingleadid as string,",
+						"          originatingleadidname as string,",
+						"          originatingleadidyominame as string,",
+						"          overriddencreatedon as timestamp,",
+						"          ownerid as string,",
+						"          owneridname as string,",
+						"          owneridtype as string,",
+						"          owneridyominame as string,",
+						"          owningbusinessunit as string,",
+						"          owningbusinessunitname as string,",
+						"          owningteam as string,",
+						"          owninguser as string,",
+						"          pager as string,",
+						"          parent_contactid as string,",
+						"          parent_contactidname as string,",
+						"          parent_contactidyominame as string,",
+						"          parentcontactid as string,",
+						"          parentcontactidname as string,",
+						"          parentcontactidyominame as string,",
+						"          parentcustomerid as string,",
+						"          parentcustomeridname as string,",
+						"          parentcustomeridtype as string,",
+						"          parentcustomeridyominame as string,",
+						"          participatesinworkflow as boolean,",
+						"          paymenttermscode as string,",
+						"          preferredappointmentdaycode as string,",
+						"          preferredappointmenttimecode as string,",
+						"          preferredcontactmethodcode as string,",
+						"          preferredequipmentid as string,",
+						"          preferredequipmentidname as string,",
+						"          preferredserviceid as string,",
+						"          preferredserviceidname as string,",
+						"          preferredsystemuserid as string,",
+						"          preferredsystemuseridname as string,",
+						"          preferredsystemuseridyominame as string,",
+						"          processid as string,",
+						"          salutation as string,",
+						"          shippingmethodcode as string,",
+						"          slaid as string,",
+						"          slainvokedid as string,",
+						"          slainvokedidname as string,",
+						"          slaname as string,",
+						"          spousesname as string,",
+						"          stageid as string,",
+						"          statecode as integer,",
+						"          statuscode as integer,",
+						"          subscriptionid as string,",
+						"          suffix as string,",
+						"          teamsfollowed as integer,",
+						"          telephone1 as string,",
+						"          telephone2 as string,",
+						"          telephone3 as string,",
+						"          territorycode as string,",
+						"          timespentbymeonemailandmeetings as string,",
+						"          timezoneruleversionnumber as integer,",
+						"          transactioncurrencyid as string,",
+						"          transactioncurrencyidname as string,",
+						"          traversedpath as string,",
+						"          utcconversiontimezonecode as integer,",
+						"          versionnumber as long,",
+						"          websiteurl as string,",
+						"          yomifirstname as string,",
+						"          yomifullname as string,",
+						"          yomilastname as string,",
+						"          yomimiddlename as string,",
+						"          createdby as string,",
+						"          createdbyexternalparty as string,",
+						"          createdbyexternalpartyname as string,",
+						"          createdbyexternalpartyyominame as string,",
+						"          createdbyname as string,",
+						"          createdbyyominame as string,",
+						"          createdon as timestamp,",
+						"          createdonbehalfby as string,",
+						"          createdonbehalfbyname as string,",
+						"          createdonbehalfbyyominame as string,",
+						"          modifiedby as string,",
+						"          modifiedbyexternalparty as string,",
+						"          modifiedbyexternalpartyname as string,",
+						"          modifiedbyexternalpartyyominame as string,",
+						"          modifiedbyname as string,",
+						"          modifiedbyyominame as string,",
+						"          modifiedon as timestamp,",
+						"          modifiedonbehalfby as string,",
+						"          modifiedonbehalfbyname as string,",
+						"          modifiedonbehalfbyyominame as string,",
+						"          Is_Current as boolean,",
+						"          Start_Date as timestamp,",
+						"          End_Date as timestamp",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: true,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> source2",
+						"FilterForCurrentSRC derive(Is_Current = 1) ~> derivedColumn1",
+						"FilterForCurrentDWH select(mapColumn(",
+						"          Contact_Key = ID,",
+						"          Contact_GUID = contactid,",
+						"          Account_GUID = accountid,",
+						"          Account_Name = accountidname,",
+						"          Annual_Income = annualincome,",
+						"          Annual_Income_Base = annualincome_base,",
+						"          Is_Current,",
+						"          Start_Date,",
+						"          End_Date",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"derivedColumn1 derive(SRC_hash = sha2(256, Contact_GUID,Account_GUID,Account_Name,Annual_Income,Annual_Income_Base),",
+						"          id_hash = sha2(256, Contact_GUID)) ~> AddHashKeySRC",
+						"select1 derive(DES_hash = sha2(256, Contact_GUID,Account_GUID,Account_Name,Annual_Income,Annual_Income_Base),",
+						"          id_hash = sha2(256, Contact_GUID)) ~> AddHashKeyDES",
+						"source2 filter(Is_Current == true()) ~> FilterForCurrentDWH",
+						"source1 filter(Is_Current == true()) ~> FilterForCurrentSRC",
+						"AddHashKeySRC, AddHashKeyDES exists(SRC_hash == DES_hash,",
+						"     negate:true,",
+						"     broadcast: 'auto')~> NewRows",
+						"AddHashKeyDES, NewRows exists(AddHashKeyDES@id_hash == AddHashKeySRC@id_hash,",
+						"     negate:false,",
+						"     broadcast: 'auto')~> FilterForUpdate",
+						"NewRows derive(Is_Current = true(),",
+						"          Start_Date = currentUTC(),",
+						"          End_Date = toTimestamp(toString(null()))) ~> derivedColumn4",
+						"derivedColumn4 select(mapColumn(",
+						"          Contact_Key,",
+						"          Contact_GUID,",
+						"          Account_GUID,",
+						"          Account_Name,",
+						"          Annual_Income,",
+						"          Annual_Income_Base,",
+						"          Is_Current,",
+						"          Start_Date,",
+						"          End_Date",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> RemoveUnwantedColumns",
+						"RemoveUnwantedColumns alterRow(insertIf(true())) ~> MarkAsInsert",
+						"FilterForUpdate derive(Is_Current = false(),",
+						"          End_Date = currentUTC()) ~> UpdateObsolete",
+						"UpdateObsolete alterRow(updateIf(true())) ~> alterRow1",
+						"alterRow1 select(mapColumn(",
+						"          Contact_Key,",
+						"          Is_Current,",
+						"          End_Date",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select2",
+						"MarkAsInsert sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          ID as long,",
+						"          contactid as string,",
+						"          accountid as string,",
+						"          accountidname as string,",
+						"          accountidyominame as string,",
+						"          accountrolecode as string,",
+						"          address1_addressid as string,",
+						"          address1_addresstypecode as string,",
+						"          address1_city as string,",
+						"          address1_composite as string,",
+						"          address1_country as string,",
+						"          address1_county as string,",
+						"          address1_fax as string,",
+						"          address1_freighttermscode as string,",
+						"          address1_latitude as double,",
+						"          address1_line1 as string,",
+						"          address1_line2 as string,",
+						"          address1_line3 as string,",
+						"          address1_longitude as double,",
+						"          address1_name as string,",
+						"          address1_postalcode as string,",
+						"          address1_postofficebox as string,",
+						"          address1_primarycontactname as string,",
+						"          address1_shippingmethodcode as string,",
+						"          address1_stateorprovince as string,",
+						"          address1_telephone1 as string,",
+						"          address1_telephone2 as string,",
+						"          address1_telephone3 as string,",
+						"          address1_upszone as string,",
+						"          address1_utcoffset as integer,",
+						"          address2_addressid as string,",
+						"          address2_addresstypecode as string,",
+						"          address2_city as string,",
+						"          address2_composite as string,",
+						"          address2_country as string,",
+						"          address2_county as string,",
+						"          address2_fax as string,",
+						"          address2_freighttermscode as string,",
+						"          address2_latitude as double,",
+						"          address2_line1 as string,",
+						"          address2_line2 as string,",
+						"          address2_line3 as string,",
+						"          address2_longitude as double,",
+						"          address2_name as string,",
+						"          address2_postalcode as string,",
+						"          address2_postofficebox as string,",
+						"          address2_primarycontactname as string,",
+						"          address2_shippingmethodcode as string,",
+						"          address2_stateorprovince as string,",
+						"          address2_telephone1 as string,",
+						"          address2_telephone2 as string,",
+						"          address2_telephone3 as string,",
+						"          address2_upszone as string,",
+						"          address2_utcoffset as integer,",
+						"          address3_addressid as string,",
+						"          address3_addresstypecode as string,",
+						"          address3_city as string,",
+						"          address3_composite as string,",
+						"          address3_country as string,",
+						"          address3_county as string,",
+						"          address3_fax as string,",
+						"          address3_freighttermscode as string,",
+						"          address3_latitude as double,",
+						"          address3_line1 as string,",
+						"          address3_line2 as string,",
+						"          address3_line3 as string,",
+						"          address3_longitude as double,",
+						"          address3_name as string,",
+						"          address3_postalcode as string,",
+						"          address3_postofficebox as string,",
+						"          address3_primarycontactname as string,",
+						"          address3_shippingmethodcode as string,",
+						"          address3_stateorprovince as string,",
+						"          address3_telephone1 as string,",
+						"          address3_telephone2 as string,",
+						"          address3_telephone3 as string,",
+						"          address3_upszone as string,",
+						"          address3_utcoffset as integer,",
+						"          adx_confirmremovepassword as boolean,",
+						"          adx_createdbyipaddress as string,",
+						"          adx_createdbyusername as string,",
+						"          adx_identity_accessfailedcount as integer,",
+						"          adx_identity_emailaddress1confirmed as boolean,",
+						"          adx_identity_lastsuccessfullogin as timestamp,",
+						"          adx_identity_locallogindisabled as boolean,",
+						"          adx_identity_lockoutenabled as boolean,",
+						"          adx_identity_lockoutenddate as timestamp,",
+						"          adx_identity_logonenabled as boolean,",
+						"          adx_identity_mobilephoneconfirmed as boolean,",
+						"          adx_identity_newpassword as string,",
+						"          adx_identity_passwordhash as string,",
+						"          adx_identity_securitystamp as string,",
+						"          adx_identity_twofactorenabled as boolean,",
+						"          adx_identity_username as string,",
+						"          adx_modifiedbyipaddress as string,",
+						"          adx_modifiedbyusername as string,",
+						"          adx_organizationname as string,",
+						"          adx_preferredlanguageid as string,",
+						"          adx_preferredlanguageidname as string,",
+						"          adx_profilealert as boolean,",
+						"          adx_profilealertdate as timestamp,",
+						"          adx_profilealertinstructions as string,",
+						"          adx_profileisanonymous as boolean,",
+						"          adx_profilelastactivity as timestamp,",
+						"          adx_profilemodifiedon as timestamp,",
+						"          adx_publicprofilecopy as string,",
+						"          adx_timezone as integer,",
+						"          aging30 as double,",
+						"          aging30_base as double,",
+						"          aging60 as double,",
+						"          aging60_base as double,",
+						"          aging90 as double,",
+						"          aging90_base as double,",
+						"          anniversary as timestamp,",
+						"          annualincome as double,",
+						"          annualincome_base as double,",
+						"          assistantname as string,",
+						"          assistantphone as string,",
+						"          birthdate as timestamp,",
+						"          business2 as string,",
+						"          businesscard as string,",
+						"          businesscardattributes as string,",
+						"          callback as string,",
+						"          childrensnames as string,",
+						"          company as string,",
+						"          CR978_BIOGRAPHY as string,",
+						"          CR978_INSTAGRAM as string,",
+						"          CR978_LINKEDIN as string,",
+						"          cr978_militarybranch as string,",
+						"          cr978_militaryfamily as string,",
+						"          cr978_militaryspouse as string,",
+						"          cr978_militarystatus as string,",
+						"          cr978_msnfp_transaction as string,",
+						"          cr978_msnfp_transactionname as string,",
+						"          CR978_TWITTER as string,",
+						"          creditlimit as double,",
+						"          creditlimit_base as double,",
+						"          creditonhold as boolean,",
+						"          customersizecode as string,",
+						"          customertypecode as string,",
+						"          defaultpricelevelid as string,",
+						"          defaultpricelevelidname as string,",
+						"          department as string,",
+						"          description as string,",
+						"          donotbulkemail as boolean,",
+						"          donotbulkpostalmail as boolean,",
+						"          donotemail as boolean,",
+						"          donotfax as boolean,",
+						"          donotphone as boolean,",
+						"          donotpostalmail as boolean,",
+						"          donotsendmm as boolean,",
+						"          educationcode as string,",
+						"          emailaddress1 as string,",
+						"          emailaddress2 as string,",
+						"          emailaddress3 as string,",
+						"          employeeid as string,",
+						"          entityimage_timestamp as long,",
+						"          entityimage_url as string,",
+						"          entityimageid as string,",
+						"          exchangerate as double,",
+						"          externaluseridentifier as string,",
+						"          familystatuscode as string,",
+						"          fax as string,",
+						"          firstname as string,",
+						"          followemail as boolean,",
+						"          ftpsiteurl as string,",
+						"          fullname as string,",
+						"          gendercode as string,",
+						"          governmentid as string,",
+						"          haschildrencode as string,",
+						"          home2 as string,",
+						"          importsequencenumber as integer,",
+						"          isautocreate as boolean,",
+						"          isbackofficecustomer as boolean,",
+						"          isprivate as boolean,",
+						"          jobtitle as string,",
+						"          lastname as string,",
+						"          lastonholdtime as timestamp,",
+						"          lastusedincampaign as timestamp,",
+						"          leadsourcecode as string,",
+						"          managername as string,",
+						"          managerphone as string,",
+						"          marketingonly as boolean,",
+						"          mastercontactidname as string,",
+						"          mastercontactidyominame as string,",
+						"          masterid as string,",
+						"          merged as boolean,",
+						"          middlename as string,",
+						"          mobilephone as string,",
+						"          msa_managingpartnerid as string,",
+						"          msa_managingpartneridname as string,",
+						"          msa_managingpartneridyominame as string,",
+						"          msdyn_disablewebtracking as boolean,",
+						"          msdyn_gdproptout as boolean,",
+						"          msdyn_isminor as boolean,",
+						"          msdyn_isminorwithparentalconsent as boolean,",
+						"          msdyn_orgchangestatus as string,",
+						"          msdyn_portaltermsagreementdate as timestamp,",
+						"          msnfp_age as integer,",
+						"          msnfp_anonymous as boolean,",
+						"          msnfp_birthday as string,",
+						"          msnfp_birthmonth as string,",
+						"          msnfp_birthyear as integer,",
+						"          msnfp_contactaccountnumber as string,",
+						"          msnfp_deceased as boolean,",
+						"          msnfp_ethnicity as string,",
+						"          msnfp_maidenname as string,",
+						"          msnfp_primaryconstituenttype as string,",
+						"          msnfp_reportstoid as string,",
+						"          msnfp_reportstoidname as string,",
+						"          msnfp_reportstoidyominame as string,",
+						"          nickname as string,",
+						"          numberofchildren as integer,",
+						"          onholdtime as integer,",
+						"          originatingleadid as string,",
+						"          originatingleadidname as string,",
+						"          originatingleadidyominame as string,",
+						"          overriddencreatedon as timestamp,",
+						"          ownerid as string,",
+						"          owneridname as string,",
+						"          owneridtype as string,",
+						"          owneridyominame as string,",
+						"          owningbusinessunit as string,",
+						"          owningbusinessunitname as string,",
+						"          owningteam as string,",
+						"          owninguser as string,",
+						"          pager as string,",
+						"          parent_contactid as string,",
+						"          parent_contactidname as string,",
+						"          parent_contactidyominame as string,",
+						"          parentcontactid as string,",
+						"          parentcontactidname as string,",
+						"          parentcontactidyominame as string,",
+						"          parentcustomerid as string,",
+						"          parentcustomeridname as string,",
+						"          parentcustomeridtype as string,",
+						"          parentcustomeridyominame as string,",
+						"          participatesinworkflow as boolean,",
+						"          paymenttermscode as string,",
+						"          preferredappointmentdaycode as string,",
+						"          preferredappointmenttimecode as string,",
+						"          preferredcontactmethodcode as string,",
+						"          preferredequipmentid as string,",
+						"          preferredequipmentidname as string,",
+						"          preferredserviceid as string,",
+						"          preferredserviceidname as string,",
+						"          preferredsystemuserid as string,",
+						"          preferredsystemuseridname as string,",
+						"          preferredsystemuseridyominame as string,",
+						"          processid as string,",
+						"          salutation as string,",
+						"          shippingmethodcode as string,",
+						"          slaid as string,",
+						"          slainvokedid as string,",
+						"          slainvokedidname as string,",
+						"          slaname as string,",
+						"          spousesname as string,",
+						"          stageid as string,",
+						"          statecode as integer,",
+						"          statuscode as integer,",
+						"          subscriptionid as string,",
+						"          suffix as string,",
+						"          teamsfollowed as integer,",
+						"          telephone1 as string,",
+						"          telephone2 as string,",
+						"          telephone3 as string,",
+						"          territorycode as string,",
+						"          timespentbymeonemailandmeetings as string,",
+						"          timezoneruleversionnumber as integer,",
+						"          transactioncurrencyid as string,",
+						"          transactioncurrencyidname as string,",
+						"          traversedpath as string,",
+						"          utcconversiontimezonecode as integer,",
+						"          versionnumber as long,",
+						"          websiteurl as string,",
+						"          yomifirstname as string,",
+						"          yomifullname as string,",
+						"          yomilastname as string,",
+						"          yomimiddlename as string,",
+						"          createdby as string,",
+						"          createdbyexternalparty as string,",
+						"          createdbyexternalpartyname as string,",
+						"          createdbyexternalpartyyominame as string,",
+						"          createdbyname as string,",
+						"          createdbyyominame as string,",
+						"          createdon as timestamp,",
+						"          createdonbehalfby as string,",
+						"          createdonbehalfbyname as string,",
+						"          createdonbehalfbyyominame as string,",
+						"          modifiedby as string,",
+						"          modifiedbyexternalparty as string,",
+						"          modifiedbyexternalpartyname as string,",
+						"          modifiedbyexternalpartyyominame as string,",
+						"          modifiedbyname as string,",
+						"          modifiedbyyominame as string,",
+						"          modifiedon as timestamp,",
+						"          modifiedonbehalfby as string,",
+						"          modifiedonbehalfbyname as string,",
+						"          modifiedonbehalfbyyominame as string,",
+						"          Is_Current as boolean,",
+						"          Start_Date as timestamp,",
+						"          End_Date as timestamp",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     saveOrder: 2,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Is_Current,",
+						"          Start_Date,",
+						"          End_Date,",
+						"          ID = Contact_Key,",
+						"          contactid = Contact_GUID,",
+						"          accountid = Account_GUID,",
+						"          accountidname = Account_Name,",
+						"          annualincome = Annual_Income,",
+						"          annualincome_base = Annual_Income_Base",
+						"     )) ~> sink2",
+						"select2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          ID as long,",
+						"          contactid as string,",
+						"          accountid as string,",
+						"          accountidname as string,",
+						"          accountidyominame as string,",
+						"          accountrolecode as string,",
+						"          address1_addressid as string,",
+						"          address1_addresstypecode as string,",
+						"          address1_city as string,",
+						"          address1_composite as string,",
+						"          address1_country as string,",
+						"          address1_county as string,",
+						"          address1_fax as string,",
+						"          address1_freighttermscode as string,",
+						"          address1_latitude as double,",
+						"          address1_line1 as string,",
+						"          address1_line2 as string,",
+						"          address1_line3 as string,",
+						"          address1_longitude as double,",
+						"          address1_name as string,",
+						"          address1_postalcode as string,",
+						"          address1_postofficebox as string,",
+						"          address1_primarycontactname as string,",
+						"          address1_shippingmethodcode as string,",
+						"          address1_stateorprovince as string,",
+						"          address1_telephone1 as string,",
+						"          address1_telephone2 as string,",
+						"          address1_telephone3 as string,",
+						"          address1_upszone as string,",
+						"          address1_utcoffset as integer,",
+						"          address2_addressid as string,",
+						"          address2_addresstypecode as string,",
+						"          address2_city as string,",
+						"          address2_composite as string,",
+						"          address2_country as string,",
+						"          address2_county as string,",
+						"          address2_fax as string,",
+						"          address2_freighttermscode as string,",
+						"          address2_latitude as double,",
+						"          address2_line1 as string,",
+						"          address2_line2 as string,",
+						"          address2_line3 as string,",
+						"          address2_longitude as double,",
+						"          address2_name as string,",
+						"          address2_postalcode as string,",
+						"          address2_postofficebox as string,",
+						"          address2_primarycontactname as string,",
+						"          address2_shippingmethodcode as string,",
+						"          address2_stateorprovince as string,",
+						"          address2_telephone1 as string,",
+						"          address2_telephone2 as string,",
+						"          address2_telephone3 as string,",
+						"          address2_upszone as string,",
+						"          address2_utcoffset as integer,",
+						"          address3_addressid as string,",
+						"          address3_addresstypecode as string,",
+						"          address3_city as string,",
+						"          address3_composite as string,",
+						"          address3_country as string,",
+						"          address3_county as string,",
+						"          address3_fax as string,",
+						"          address3_freighttermscode as string,",
+						"          address3_latitude as double,",
+						"          address3_line1 as string,",
+						"          address3_line2 as string,",
+						"          address3_line3 as string,",
+						"          address3_longitude as double,",
+						"          address3_name as string,",
+						"          address3_postalcode as string,",
+						"          address3_postofficebox as string,",
+						"          address3_primarycontactname as string,",
+						"          address3_shippingmethodcode as string,",
+						"          address3_stateorprovince as string,",
+						"          address3_telephone1 as string,",
+						"          address3_telephone2 as string,",
+						"          address3_telephone3 as string,",
+						"          address3_upszone as string,",
+						"          address3_utcoffset as integer,",
+						"          adx_confirmremovepassword as boolean,",
+						"          adx_createdbyipaddress as string,",
+						"          adx_createdbyusername as string,",
+						"          adx_identity_accessfailedcount as integer,",
+						"          adx_identity_emailaddress1confirmed as boolean,",
+						"          adx_identity_lastsuccessfullogin as timestamp,",
+						"          adx_identity_locallogindisabled as boolean,",
+						"          adx_identity_lockoutenabled as boolean,",
+						"          adx_identity_lockoutenddate as timestamp,",
+						"          adx_identity_logonenabled as boolean,",
+						"          adx_identity_mobilephoneconfirmed as boolean,",
+						"          adx_identity_newpassword as string,",
+						"          adx_identity_passwordhash as string,",
+						"          adx_identity_securitystamp as string,",
+						"          adx_identity_twofactorenabled as boolean,",
+						"          adx_identity_username as string,",
+						"          adx_modifiedbyipaddress as string,",
+						"          adx_modifiedbyusername as string,",
+						"          adx_organizationname as string,",
+						"          adx_preferredlanguageid as string,",
+						"          adx_preferredlanguageidname as string,",
+						"          adx_profilealert as boolean,",
+						"          adx_profilealertdate as timestamp,",
+						"          adx_profilealertinstructions as string,",
+						"          adx_profileisanonymous as boolean,",
+						"          adx_profilelastactivity as timestamp,",
+						"          adx_profilemodifiedon as timestamp,",
+						"          adx_publicprofilecopy as string,",
+						"          adx_timezone as integer,",
+						"          aging30 as double,",
+						"          aging30_base as double,",
+						"          aging60 as double,",
+						"          aging60_base as double,",
+						"          aging90 as double,",
+						"          aging90_base as double,",
+						"          anniversary as timestamp,",
+						"          annualincome as double,",
+						"          annualincome_base as double,",
+						"          assistantname as string,",
+						"          assistantphone as string,",
+						"          birthdate as timestamp,",
+						"          business2 as string,",
+						"          businesscard as string,",
+						"          businesscardattributes as string,",
+						"          callback as string,",
+						"          childrensnames as string,",
+						"          company as string,",
+						"          CR978_BIOGRAPHY as string,",
+						"          CR978_INSTAGRAM as string,",
+						"          CR978_LINKEDIN as string,",
+						"          cr978_militarybranch as string,",
+						"          cr978_militaryfamily as string,",
+						"          cr978_militaryspouse as string,",
+						"          cr978_militarystatus as string,",
+						"          cr978_msnfp_transaction as string,",
+						"          cr978_msnfp_transactionname as string,",
+						"          CR978_TWITTER as string,",
+						"          creditlimit as double,",
+						"          creditlimit_base as double,",
+						"          creditonhold as boolean,",
+						"          customersizecode as string,",
+						"          customertypecode as string,",
+						"          defaultpricelevelid as string,",
+						"          defaultpricelevelidname as string,",
+						"          department as string,",
+						"          description as string,",
+						"          donotbulkemail as boolean,",
+						"          donotbulkpostalmail as boolean,",
+						"          donotemail as boolean,",
+						"          donotfax as boolean,",
+						"          donotphone as boolean,",
+						"          donotpostalmail as boolean,",
+						"          donotsendmm as boolean,",
+						"          educationcode as string,",
+						"          emailaddress1 as string,",
+						"          emailaddress2 as string,",
+						"          emailaddress3 as string,",
+						"          employeeid as string,",
+						"          entityimage_timestamp as long,",
+						"          entityimage_url as string,",
+						"          entityimageid as string,",
+						"          exchangerate as double,",
+						"          externaluseridentifier as string,",
+						"          familystatuscode as string,",
+						"          fax as string,",
+						"          firstname as string,",
+						"          followemail as boolean,",
+						"          ftpsiteurl as string,",
+						"          fullname as string,",
+						"          gendercode as string,",
+						"          governmentid as string,",
+						"          haschildrencode as string,",
+						"          home2 as string,",
+						"          importsequencenumber as integer,",
+						"          isautocreate as boolean,",
+						"          isbackofficecustomer as boolean,",
+						"          isprivate as boolean,",
+						"          jobtitle as string,",
+						"          lastname as string,",
+						"          lastonholdtime as timestamp,",
+						"          lastusedincampaign as timestamp,",
+						"          leadsourcecode as string,",
+						"          managername as string,",
+						"          managerphone as string,",
+						"          marketingonly as boolean,",
+						"          mastercontactidname as string,",
+						"          mastercontactidyominame as string,",
+						"          masterid as string,",
+						"          merged as boolean,",
+						"          middlename as string,",
+						"          mobilephone as string,",
+						"          msa_managingpartnerid as string,",
+						"          msa_managingpartneridname as string,",
+						"          msa_managingpartneridyominame as string,",
+						"          msdyn_disablewebtracking as boolean,",
+						"          msdyn_gdproptout as boolean,",
+						"          msdyn_isminor as boolean,",
+						"          msdyn_isminorwithparentalconsent as boolean,",
+						"          msdyn_orgchangestatus as string,",
+						"          msdyn_portaltermsagreementdate as timestamp,",
+						"          msnfp_age as integer,",
+						"          msnfp_anonymous as boolean,",
+						"          msnfp_birthday as string,",
+						"          msnfp_birthmonth as string,",
+						"          msnfp_birthyear as integer,",
+						"          msnfp_contactaccountnumber as string,",
+						"          msnfp_deceased as boolean,",
+						"          msnfp_ethnicity as string,",
+						"          msnfp_maidenname as string,",
+						"          msnfp_primaryconstituenttype as string,",
+						"          msnfp_reportstoid as string,",
+						"          msnfp_reportstoidname as string,",
+						"          msnfp_reportstoidyominame as string,",
+						"          nickname as string,",
+						"          numberofchildren as integer,",
+						"          onholdtime as integer,",
+						"          originatingleadid as string,",
+						"          originatingleadidname as string,",
+						"          originatingleadidyominame as string,",
+						"          overriddencreatedon as timestamp,",
+						"          ownerid as string,",
+						"          owneridname as string,",
+						"          owneridtype as string,",
+						"          owneridyominame as string,",
+						"          owningbusinessunit as string,",
+						"          owningbusinessunitname as string,",
+						"          owningteam as string,",
+						"          owninguser as string,",
+						"          pager as string,",
+						"          parent_contactid as string,",
+						"          parent_contactidname as string,",
+						"          parent_contactidyominame as string,",
+						"          parentcontactid as string,",
+						"          parentcontactidname as string,",
+						"          parentcontactidyominame as string,",
+						"          parentcustomerid as string,",
+						"          parentcustomeridname as string,",
+						"          parentcustomeridtype as string,",
+						"          parentcustomeridyominame as string,",
+						"          participatesinworkflow as boolean,",
+						"          paymenttermscode as string,",
+						"          preferredappointmentdaycode as string,",
+						"          preferredappointmenttimecode as string,",
+						"          preferredcontactmethodcode as string,",
+						"          preferredequipmentid as string,",
+						"          preferredequipmentidname as string,",
+						"          preferredserviceid as string,",
+						"          preferredserviceidname as string,",
+						"          preferredsystemuserid as string,",
+						"          preferredsystemuseridname as string,",
+						"          preferredsystemuseridyominame as string,",
+						"          processid as string,",
+						"          salutation as string,",
+						"          shippingmethodcode as string,",
+						"          slaid as string,",
+						"          slainvokedid as string,",
+						"          slainvokedidname as string,",
+						"          slaname as string,",
+						"          spousesname as string,",
+						"          stageid as string,",
+						"          statecode as integer,",
+						"          statuscode as integer,",
+						"          subscriptionid as string,",
+						"          suffix as string,",
+						"          teamsfollowed as integer,",
+						"          telephone1 as string,",
+						"          telephone2 as string,",
+						"          telephone3 as string,",
+						"          territorycode as string,",
+						"          timespentbymeonemailandmeetings as string,",
+						"          timezoneruleversionnumber as integer,",
+						"          transactioncurrencyid as string,",
+						"          transactioncurrencyidname as string,",
+						"          traversedpath as string,",
+						"          utcconversiontimezonecode as integer,",
+						"          versionnumber as long,",
+						"          websiteurl as string,",
+						"          yomifirstname as string,",
+						"          yomifullname as string,",
+						"          yomilastname as string,",
+						"          yomimiddlename as string,",
+						"          createdby as string,",
+						"          createdbyexternalparty as string,",
+						"          createdbyexternalpartyname as string,",
+						"          createdbyexternalpartyyominame as string,",
+						"          createdbyname as string,",
+						"          createdbyyominame as string,",
+						"          createdon as timestamp,",
+						"          createdonbehalfby as string,",
+						"          createdonbehalfbyname as string,",
+						"          createdonbehalfbyyominame as string,",
+						"          modifiedby as string,",
+						"          modifiedbyexternalparty as string,",
+						"          modifiedbyexternalpartyname as string,",
+						"          modifiedbyexternalpartyyominame as string,",
+						"          modifiedbyname as string,",
+						"          modifiedbyyominame as string,",
+						"          modifiedon as timestamp,",
+						"          modifiedonbehalfby as string,",
+						"          modifiedonbehalfbyname as string,",
+						"          modifiedonbehalfbyyominame as string,",
+						"          Is_Current as boolean,",
+						"          Start_Date as timestamp,",
+						"          End_Date as timestamp",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:false,",
+						"     updateable:true,",
+						"     upsertable:false,",
+						"     keys:['ID'],",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     saveOrder: 1,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Is_Current,",
+						"          End_Date,",
+						"          ID = Contact_Key",
+						"     )) ~> sink3"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Contacts_copy1')]",
+				"[concat(variables('factoryId'), '/datasets/CRM_contact')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SCD2_Contact')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "dataflow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"source2": {},
+									"sink2": {},
+									"sink3": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-06-06T08:37:18Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerschdule')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "copydemo",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2024-05-14T15:39:59",
+						"timeZone": "India Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/copydemo')]"
+			]
+		}
+	]
+}
