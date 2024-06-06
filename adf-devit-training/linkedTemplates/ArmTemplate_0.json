@@ -2726,7 +2726,6 @@
 						"          Is_Current,",
 						"          Start_Date,",
 						"          End_Date,",
-						"          ID = Contact_Key,",
 						"          contactid = Contact_GUID,",
 						"          accountid = Account_GUID,",
 						"          accountidname = Account_Name,",
